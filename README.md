@@ -1,2 +1,2 @@
 # react-movie-labs
-Movie app lab
+Movie app Assignment

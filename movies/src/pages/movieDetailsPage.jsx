@@ -3,39 +3,53 @@ import { useParams } from 'react-router';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
 import useMovie from "../hooks/useMovie";
-import { getMovie } from '../api/tmdb-api'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner'
-import MovieCast from "../components/movieCast";
+import CastList from "../components/movieCast/castList";
+import { getMovie, getMovieCredits } from "../api/tmdb-api";
 
 
-const MoviePage = (props) => {
+const MoviePage = () => {
   const { id } = useParams();
-   const { data: movie, error, isPending, isError  } = useQuery({
-    queryKey: ['movie', {id: id}],
+
+  // movie
+  const {
+    data: movie,
+    error: movieError,
+    isPending: moviePending,
+    isError: movieIsError,
+  } = useQuery({
+    queryKey: ["movie", { id }],
     queryFn: getMovie,
-  })
+  });
 
-  if (isPending) {
-    return <Spinner />;
-  }
+  // actors
+  const {
+    data: credits,
+    error: creditsError,
+    isPending: creditsPending,
+    isError: creditsIsError,
+  } = useQuery({
+    queryKey: ["credits", { id }],
+    queryFn: getMovieCredits,
+  });
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
-  }
+  if (moviePending || creditsPending) return <Spinner />;
+  if (movieIsError) return <h1>{movieError.message}</h1>;
+  if (creditsIsError) return <h1>{creditsError.message}</h1>;
 
+  const casts = credits?.cast || [];
 
   return (
     <>
       {movie ? (
-        <>
-          <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
-            <MovieCast movieId={movie.id}></MovieCast>
-          </PageTemplate>
-        </>
+        <PageTemplate movie={movie}>
+          <MovieDetails movie={movie} />
+          <h2 style={{ marginTop: "1.5rem" }}>Cast</h2>
+          <CastList casts={casts} />
+        </PageTemplate>
       ) : (
-        <p>Waiting for movie details</p>
+        <p>Waiting for movie details...</p>
       )}
     </>
   );
