@@ -40,6 +40,21 @@ It integrates the **TMDB API** to fetch and display movie data dynamically, usin
 
 ---
 
+### Day 3 – Filtering, Must Watch & Pagination Integration
+- Enhanced `FilterMoviesCard` with a new **Release Year** filter (1990s / 2000s / 2010s / 2020s)  
+- Updated `MovieListPageTemplate` to support combined filtering by **name + genre + year**  
+- Added **Must Watch Page** (`/movies/mustWatch`) with context-based add/remove functionality  
+- Integrated `AddToWatchlistIcon` and `RemoveFromMustWatchIcon` to manage must-watch state via `MoviesContext`  
+- Unified all movie list pages (Home, Popular, Top Rated, Now Playing, Upcoming) under a single reusable `MoviePaginationPage` component  
+- Modified `getMovies` API to accept `{ category, page }` parameters, enabling dynamic pagination for all TMDB list endpoints  
+- Implemented **Pagination** using MUI’s `<Pagination>` component and React Query’s `keepPreviousData` for smooth page transitions  
+- Extended **Search Results Page** with TMDB `/search/multi` API and full pagination support for a consistent browsing experience  
+
+*Result:* Search, filtering, and pagination now standardized across all list pages;  
+context-based Must Watch feature fully integrated and functional.
+
+---
+
 ##  Key Links
 - **GitLab Repository:** [https://github.com/musicheng520/react-movie-assignment](https://github.com/musicheng520/react-movie-assignment)  
 
