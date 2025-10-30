@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
 import useMovie from "../hooks/useMovie";
+import MovieRecommendations from "../components/movieRecommendations";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner'
 import CastList from "../components/movieCast/castList";
@@ -47,6 +48,7 @@ const MoviePage = () => {
           <MovieDetails movie={movie} />
           <h2 style={{ marginTop: "1.5rem" }}>Cast</h2>
           <CastList casts={casts} />
+          <MovieRecommendations movieId={id}/>
         </PageTemplate>
       ) : (
         <p>Waiting for movie details...</p>
