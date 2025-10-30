@@ -1,17 +1,25 @@
-export const getMovies = () => {
+export const getMovies = ({ queryKey }) => {
+  const [, { category, page }] = queryKey;
+
+  const baseUrl =
+    category === "discover" || !category
+      ? "https://api.themoviedb.org/3/discover/movie"
+      : `https://api.themoviedb.org/3/movie/${category}`;
+
   return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
-  ).then((response) => {
-    if (!response.ok) {
-      return response.json().then((error) => {
-        throw new Error(error.status_message || "Something went wrong");
-      });
-    }
-    return response.json();
-  })
-  .catch((error) => {
-      throw error
-  });
+    `${baseUrl}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
 
 
@@ -220,7 +228,7 @@ export const getPerson = ({ queryKey }) => {
       return response.json();
     })
     .catch((error) => {
-      console.error("❌ Error fetching person:", error);
+      console.error(" Error fetching person:", error);
       throw error;
     });
 };
@@ -242,7 +250,7 @@ export const getPersonMovieCredits = ({ queryKey }) => {
       return response.json();
     })
     .catch((error) => {
-      console.error("❌ Error fetching person movie credits:", error);
+      console.error("Error fetching person movie credits:", error);
       throw error;
     });
 };
@@ -250,11 +258,12 @@ export const getPersonMovieCredits = ({ queryKey }) => {
 
 
 export const searchMulti = ({ queryKey }) => {
-  const [, searchPart] = queryKey;
-  const { query } = searchPart;
+  const [, { query, page }] = queryKey;
 
   return fetch(
-    `https://api.themoviedb.org/3/search/multi?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/multi?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&language=en-US&query=${query}&page=${page}&include_adult=false`
   )
     .then((response) => {
       if (!response.ok) {
@@ -265,10 +274,11 @@ export const searchMulti = ({ queryKey }) => {
       return response.json();
     })
     .catch((error) => {
-      console.error("❌ Error fetching search results:", error);
+      console.error(" Error fetching search results:", error);
       throw error;
     });
 };
+
 
 
 
