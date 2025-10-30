@@ -246,3 +246,26 @@ export const getPersonMovieCredits = ({ queryKey }) => {
       throw error;
     });
 };
+
+
+
+export const searchMulti = ({ queryKey }) => {
+  const [, searchPart] = queryKey;
+  const { query } = searchPart;
+
+  return fetch(
+    `https://api.themoviedb.org/3/search/multi?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Failed to fetch search results");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("❌ Error fetching search results:", error);
+      throw error;
+    });
+};

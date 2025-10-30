@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import SearchBar from "../searchBar";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -101,6 +102,7 @@ const menuOptions = [
                     {opt.label}
                   </Button>
                 ))}
+                <SearchBar />
               </>
             )}
         </Toolbar>
