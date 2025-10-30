@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 const MovieHeader = ({ movie }) => {
   const navigate = useNavigate();
 
-  if (!movie) return null; // movie 还没加载，直接返回空
+  if (!movie) return null; 
 
   return (
     <Paper 

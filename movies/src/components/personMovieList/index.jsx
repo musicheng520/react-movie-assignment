@@ -37,8 +37,8 @@ const PersonMovieList = ({ movies }) => {
         >
           <Box
             sx={{
-              width: "92%",               // ✅ slightly wider card area
-              transform: "scale(0.8)",    // ✅ proportional smaller scale
+              width: "92%",               
+              transform: "scale(0.8)",    
               transformOrigin: "top center",
               display: "flex",
               justifyContent: "center",

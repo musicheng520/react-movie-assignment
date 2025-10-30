@@ -40,10 +40,12 @@ export default function FilterMoviesCard(props) {
     genres.unshift({ id: "0", name: "All" });
   }
 
-  const handleChange = (e, type, value) => {
-    e.preventDefault();
-    props.onUserInput(type, value); 
-  };
+  const handleChange = (type, value) => {
+  if (type === "name") setNameFilter(value);
+  else if (type === "genre") setGenreFilter(value);
+  else if (type === "year") setYearFilter(value);
+};
+
 
   const handleTextChange = (e, props) => {
     handleChange(e, "name", e.target.value);
@@ -92,6 +94,22 @@ export default function FilterMoviesCard(props) {
             ))}
           </Select>
         </FormControl>
+
+        <FormControl sx={{ ...formControl }}>
+  <InputLabel id="year-label">Year</InputLabel>
+  <Select
+    labelId="year-label"
+    id="year-select"
+    value={props.yearFilter}
+    onChange={(e) => props.onUserInput("year", e.target.value)}
+  >
+    <MenuItem value="All">All</MenuItem>
+    <MenuItem value="2020">From 2020s</MenuItem>
+    <MenuItem value="2010">From 2010s</MenuItem>
+    <MenuItem value="2000">From 2000s</MenuItem>
+    <MenuItem value="1990">Before 2000</MenuItem>
+  </Select>
+</FormControl>
       </CardContent>
 
       <CardMedia sx={{ height: 300 }} image={img} title="Filter" />
