@@ -1,6 +1,5 @@
-import React, { useContext  } from "react";
+import React, { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
-
 import { Link } from "react-router";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,22 +10,20 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
-import StarRateIcon from "@mui/icons-material/StarRate";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
-import img from '../../images/film-poster-placeholder.png'
-import Avatar from '@mui/material/Avatar';
-
+import img from "../../images/film-poster-placeholder.png";
+import Avatar from "@mui/material/Avatar";
+import Rating from "@mui/material/Rating"; 
+import Stack from "@mui/material/Stack";   
 
 export default function MovieCard({ movie, action }) {
-
-
-    const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { favorites, addToFavorites } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
-    movie.favorite = false
+    movie.favorite = false;
   }
 
   const handleAddToFavorite = (e) => {
@@ -34,23 +31,23 @@ export default function MovieCard({ movie, action }) {
     addToFavorites(movie);
   };
 
-
   return (
-    <Card>
+    <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <CardHeader
         avatar={
           movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
+            <Avatar sx={{ backgroundColor: "red" }}>
               <FavoriteIcon />
             </Avatar>
           ) : null
         }
         title={
-          <Typography variant="h5" component="p">
-            {movie.title}{" "}
+          <Typography variant="h6" component="p" noWrap>
+            {movie.title}
           </Typography>
         }
       />
+
       <CardMedia
         sx={{ height: 500 }}
         image={
@@ -59,34 +56,44 @@ export default function MovieCard({ movie, action }) {
             : img
         }
       />
+
       <CardContent>
-        <Grid container>
-          <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Typography variant="body2" color="text.secondary">
+              <CalendarIcon fontSize="small" sx={{ mr: 0.5 }} />
               {movie.release_date}
             </Typography>
           </Grid>
-          <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
-            </Typography>
+
+          
+          <Grid item xs={12}>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Rating
+                name="read-only"
+                value={movie.vote_average / 2} 
+                precision={0.5}
+                readOnly
+                size="small"
+                sx={{ color: "#f5c518" }}
+              />
+              <Typography variant="body2" color="text.secondary">
+                {movie.vote_average.toFixed(1)}
+              </Typography>
+            </Stack>
           </Grid>
         </Grid>
       </CardContent>
-            <CardActions disableSpacing>
-      
+
+      <CardActions disableSpacing sx={{ mt: "auto" }}>
         {action(movie)}
-      
+
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
-        
       </CardActions>
-
     </Card>
   );
 }
