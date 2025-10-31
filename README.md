@@ -67,8 +67,8 @@ across all list and detail pages.
 
 
 ##  Key Links
-- **GitLab Repository:** [https://github.com/musicheng520/react-movie-assignment](https://github.com/musicheng520/react-movie-assignment)  
-
+- **GitHub Repository:** [https://github.com/musicheng520/react-movie-assignment](https://github.com/musicheng520/react-movie-assignment)  
+- **YouTube Demo Video:** [https://www.youtube.com/watch?v=3rJidBESYXE](https://www.youtube.com/watch?v=3rJidBESYXE)
 
 ---
 
@@ -81,4 +81,37 @@ This submission includes:
 - **Comprehensive README** documenting daily development progress (Day 1–4).  
 - **Self-Assessment Excel Sheet** submitted separately via Moodle.  
 - **Demo Video** (YouTube) demonstrating key functionality, navigation, and design choices.  
+
+
+## AI Usage Declaration
+
+I used ChatGPT during development mainly to help me understand some concepts and improve my code style,  
+but all the main logic and implementation were written and tested by myself.  
+Here’s how I used it in small ways:
+
+1. **Pagination help:**  
+   I wasn’t sure how to make a reusable pagination system at first,  
+   so AI showed me an idea to move it into a shared `getMovies` API function and a common `MoviePaginationPage` component.
+
+2. **Search feature idea:**  
+   AI reminded me that TMDB has a `/search/multi` endpoint,  
+   which made the search bar much easier to implement.
+
+3. **UI suggestion:**  
+   It suggested using Material UI’s `<Skeleton>` component instead of a spinner  
+   to make the loading state look cleaner.
+
+4. **Actor page layout fix:**  
+   My actor page layout kept putting the movie list under the profile photo,  
+   and AI helped me reorganize the JSX with nested MUI Grids to fix the alignment.
+
+5. **Filtering logic tip:**  
+   When I was writing the year filter, AI showed me a simpler way —  
+   just using direct `if` checks inside the `.filter()` chain,  
+   which made the code easier to read.
+
+6. **Writing and formatting:**  
+   AI helped me summarise each day’s progress and format this README neatly.
+
+I made sure I understood everything and could explain every part of the code myself.
 
