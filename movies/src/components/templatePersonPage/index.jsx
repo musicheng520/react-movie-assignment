@@ -19,15 +19,15 @@ const TemplatePersonPage = ({ person, children }) => {
         spacing={3}
         sx={{
           padding: "24px",
-          flexWrap: "nowrap", // ✅ 永远并排不换行
+          flexWrap: "nowrap", 
           alignItems: "flex-start",
         }}
       >
-        {/* 左侧头像 */}
+        
         <Grid
           item
           sx={{
-            flex: "0 0 300px", // ✅ 固定宽度
+            flex: "0 0 300px", 
             maxWidth: "300px",
           }}
         >
@@ -43,7 +43,7 @@ const TemplatePersonPage = ({ person, children }) => {
           />
         </Grid>
 
-        {/* 右侧信息区域 */}
+        
         <Grid
           item
           sx={{

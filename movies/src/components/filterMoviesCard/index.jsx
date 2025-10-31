@@ -40,20 +40,18 @@ export default function FilterMoviesCard(props) {
     genres.unshift({ id: "0", name: "All" });
   }
 
-  const handleChange = (type, value) => {
-  if (type === "name") setNameFilter(value);
-  else if (type === "genre") setGenreFilter(value);
-  else if (type === "year") setYearFilter(value);
+const handleChange = (type, value) => {
+  props.onUserInput(type, value);
 };
 
+const handleTextChange = (e) => {
+  handleChange("name", e.target.value);
+};
 
-  const handleTextChange = (e, props) => {
-    handleChange(e, "name", e.target.value);
-  };
+const handleGenreChange = (e) => {
+  handleChange("genre", e.target.value);
+};
 
-  const handleGenreChange = (e) => {
-    handleChange(e, "genre", e.target.value);
-  };
 
   return (
     <Card
