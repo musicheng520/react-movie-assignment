@@ -55,6 +55,17 @@ context-based Must Watch feature fully integrated and functional.
 
 ---
 
+### Day 4 – UI Polish & MUI Enhancements
+- Replaced `<Spinner>` in `MoviePaginationPage.jsx` with **MUI `<Skeleton>`** placeholders for smoother loading UX  
+- Implemented responsive loading grid using `Grid` + `Skeleton` to simulate movie cards during fetch  
+- Updated `MovieCard.jsx` to include **MUI `<Rating>`** and `<Stack>` for visual star-based rating (`vote_average / 2`) alongside numeric value  
+
+*Result:* Combined **Pagination + Skeleton + Rating** provides a polished, modern Material Design experience  
+across all list and detail pages.
+
+---
+
+
 ##  Key Links
 - **GitLab Repository:** [https://github.com/musicheng520/react-movie-assignment](https://github.com/musicheng520/react-movie-assignment)  
 
@@ -63,4 +74,11 @@ context-based Must Watch feature fully integrated and functional.
 
 ## Assignment Deliverables
 
+This submission includes:
+
+- **Functional React Movie Web App** integrating TMDB API with full CRUD-style features:  
+  Favourites, Must Watch, Search, Year Filter, Pagination, and UI polish (Skeleton + Rating).  
+- **Comprehensive README** documenting daily development progress (Day 1–4).  
+- **Self-Assessment Excel Sheet** submitted separately via Moodle.  
+- **Demo Video** (YouTube) demonstrating key functionality, navigation, and design choices.  
 
